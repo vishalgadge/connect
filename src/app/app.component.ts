@@ -25,4 +25,5 @@ export class AppComponent {
   }
 }
 
+
 export var serverIP = 'http://3.80.206.38:3000/api/';
