@@ -1,0 +1,21 @@
+.profileImgcls{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4.5rem;
+    width: 4.5rem;
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    border: gray 1px solid;
+    background-size: cover;
+    background-position: center;
+    background-repeat: none;
+}
+.defaultePofile{
+    height: 3rem;
+    width: 3rem;    
+}

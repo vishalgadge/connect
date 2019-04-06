@@ -1,0 +1,17 @@
+.profileImgcls{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: rgb(216, 216, 216);
+    border-radius: 50%;
+    border: gray 1px solid;
+    background-size: cover;
+    background-position: center;
+    background-repeat: none;
+}

@@ -1,0 +1,16 @@
+<ion-content>
+    <ion-list>
+      <ion-item *ngFor="let contact of contacts" >
+        <ion-avatar item-start *ngIf="contact.picture"><img [src]="contact.picture.medium"></ion-avatar>
+        <ion-avatar item-start *ngIf="! contact.picture" class="profileImgcls">
+          {{contact.firstName.charAt(0) | uppercase  }}{{contact.lastName.charAt(0) | uppercase }}
+        </ion-avatar>
+        <ion-label (click)="clickOnItem(contact.id)" >&nbsp;&nbsp; {{ contact.firstName |titlecase }} {{ contact.lastName |titlecase }} </ion-label>
+        <ion-icon  *ngIf="!contact.is_fav" name="star-outline"  (click)="changeFavourite(contact.id , 'notFav')"></ion-icon>
+        <ion-icon  *ngIf="contact.is_fav" name="star" style="color:blue;" (click)="changeFavourite(contact.id , 'fav')"></ion-icon>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading contacts...">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>

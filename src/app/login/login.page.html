@@ -1,0 +1,73 @@
+<!-- <ion-header>
+
+</ion-header>
+<ion-content padding>
+  <ion-card style="top:45%">
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Username</ion-label>
+        <ion-icon name="contact" slot="start"></ion-icon>
+      <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="key" slot="start"></ion-icon>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password"></ion-input>
+        <ion-icon name="eye" slot="end"></ion-icon>
+      </ion-item><br><br>
+      <ion-button expand="block" routerLink="/menu/Contact">Login</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content> -->
+
+
+
+
+<ion-content padding>
+  <div style="padding-top: 10px;">
+
+    <ion-row>
+      <ion-col>
+        <h1 style="  
+        text-align: center;  
+        margin-top: 1rem;
+        font-size: 3.6rem;
+        color: #3171e0;">
+          <ng-container>Connect</ng-container>
+        </h1>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+<ion-footer padding no-border>
+  <form [formGroup]="loginForm">
+    <ion-row style="bottom: 0px;">
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="contact"></ion-icon>
+            </ion-label>
+            <ion-input placeholder="Enter Email Address" formControlName="emailAddress" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="key"></ion-icon>
+            </ion-label>
+            <ion-input placeholder="Enter Password" formControlName="password" type="password"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="onLogin()" [disabled]="!loginForm.valid">
+          <strong> Login</strong>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <p (click)="forgotPassword()" style="color:gray;text-align: center;"><strong>Forgot Password?</strong></p>
+    </ion-row> -->
+  </form>
+</ion-footer>

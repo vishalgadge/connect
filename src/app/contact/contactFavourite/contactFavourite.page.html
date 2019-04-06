@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Favourite</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="favaouriteContactList.length">
+    <ion-list *ngIf="favaouriteContactList.length > 0 ">
+        <ion-item *ngFor="let contact of favaouriteContactList" >
+            <ion-avatar item-start *ngIf="contact.picture"><img [src]="contact.picture.medium"></ion-avatar>
+            <ion-avatar item-start *ngIf="!contact.picture" class="profileImgcls">
+                {{contact.firstName.charAt(0) | uppercase  }}{{contact.lastName.charAt(0) | uppercase }}
+            </ion-avatar>
+            <ion-label (click)="clickOnItem(contact.id)" >&nbsp;&nbsp; {{ contact.firstName |titlecase }} {{ contact.lastName |titlecase }}</ion-label>
+            <ion-icon name="star" style="color:blue ;z-index:999" (click)="changeFavourite(contact.id , 'fav')">
+            </ion-icon>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<ion-content *ngIf="!favaouriteContactList.length"><br><br>
+    <ion-item>
+        <img src='../../../assets/sad.svg'>
+        <ion-label> Your Favourite Contact List Empty </ion-label>
+    </ion-item>
+</ion-content>

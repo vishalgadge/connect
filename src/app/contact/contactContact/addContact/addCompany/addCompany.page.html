@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Company</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="addCompanyForm">
+    <ion-item>
+      <ion-label position="floating">Company Name</ion-label>
+      <ion-input formControlName="companyName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Parent Company</ion-label>
+      <ion-input formControlName="parentCompany" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Related Company</ion-label>
+      <ion-input formControlName="relatedCompany" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Company Website</ion-label>
+      <ion-input formControlName="companyWebsite" type="text"></ion-input>
+    </ion-item><br>
+    <ion-button expand="block" (click)="onSubmit()" [disabled]="!addCompanyForm.valid"></ion-button>
+  </form>
+</ion-content>

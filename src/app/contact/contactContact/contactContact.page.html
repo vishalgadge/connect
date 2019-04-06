@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="!toggled">Contacts</ion-title>
+    <ion-searchbar *ngIf="toggled" [(ngModel)]="searchTerm" [showCancelButton]="true" (ionCancel)="toggleSearch()"
+      (ionInput)="triggerInput($event)"></ion-searchbar>
+    <ion-buttons slot="end" end *ngIf="!toggled">
+      <ion-icon name="search" (click)="toggleSearch()" style="zoom:1.5"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-tabs #myTabs>
+
+    <ion-tab-bar slot="top">
+      <ion-tab-button (click)="case = 'contactMy'" [ngClass]="case === 'contactMy' ? 'clsActive':'clsInactive'">
+        <!-- tab="contactContact/contactTabs/contactMy" -->
+        <ion-icon name="contact"></ion-icon>
+        <ion-label>My</ion-label>
+      </ion-tab-button>
+      <ion-tab-button (click)="case = 'contactGroup'" [ngClass]="case === 'contactGroup' ? 'clsActive':'clsInactive'">
+        <!-- tab="contactContact/contactTabs/contactGroup" -->
+        <ion-icon name="contacts"></ion-icon>
+        <ion-label>Group</ion-label>
+      </ion-tab-button>
+      <ion-tab-button (click)="case = 'contactAll'" [ngClass]="case === 'contactAll' ? 'clsActive':'clsInactive'">
+        <!-- tab="contactContact/contactTabs/contactAll" -->
+        <ion-icon name="contacts"></ion-icon>
+        <ion-label>All</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+
+    <div style="height:89%;overflow: scroll;" [ngClass]="case === 'contactMy' ? 'clsShowEle':'clsHideEle'">
+      <app-contactMy [searchOnKey]="searchKey"></app-contactMy>
+    </div>
+
+    <div style="height:89%;overflow: scroll;" [ngClass]="case === 'contactGroup' ? 'clsShowEle':'clsHideEle'">
+      <app-contactGroup [searchOnKey]="searchKey"></app-contactGroup>
+    </div>
+
+    <div style="height:89%;overflow: scroll;" [ngClass]="case === 'contactAll' ? 'clsShowEle':'clsHideEle'">
+      <app-contactAll [searchOnKey]="searchKey"></app-contactAll>
+    </div>
+  </ion-tabs>
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="bottom: 10px; right:10px;">
+    <ion-fab-button (click)="addContact()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

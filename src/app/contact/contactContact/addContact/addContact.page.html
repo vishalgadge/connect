@@ -1,0 +1,157 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon name="add" (click)="submit()" style="zoom:1.5"> </ion-icon>&nbsp;&nbsp;&nbsp;
+    </ion-buttons>
+    <ion-title *ngIf= "addContact">Add Contact</ion-title>
+    <ion-title *ngIf= "!addContact">Edit Contact</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="formData">
+  <ion-grid>
+    <ion-row justify-content-center align-items-center padding>
+      <div class="profileImgcls">
+        <img src='../../../../assets/camera.svg' class="defaultePofile" (click)="triggerFile()">
+        <input style="display:none" id="fileInput" type="file" accept="image/*" (change)="upload($event)">
+      </div>
+    </ion-row>
+  </ion-grid>
+  <ion-item>
+    <ion-input placeholder="First Name*" type="text" [(ngModel)]="formData['firstName']" required> </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Last Name*" type="text" [(ngModel)]="formData['lastName']" required> </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Address" type="text" [(ngModel)]="formData['address']"> </ion-input>
+  </ion-item>
+
+  <div style="border: 3px solid rgb(231, 230, 230);"></div>
+
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-icon name="phone-portrait"></ion-icon>&nbsp;&nbsp;
+      <ion-label>Office</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-input placeholder="Designation" [(ngModel)]="formData['designation']" type="text"> </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Notes" type="text" [(ngModel)]="formData['notes']"> </ion-input>
+    </ion-item>
+  </ion-item-group>
+
+  <div style="border: 3px solid rgb(231, 230, 230);"></div>
+
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-icon name="phone-portrait"></ion-icon>&nbsp;&nbsp;
+      <ion-label>Mobile Number</ion-label>
+    </ion-item-divider>
+    <ion-item *ngFor="let mobile of mobileArray; let idx = index">
+      <ion-select placeholder="Select" [(ngModel)]="mobileArray[idx].type">
+        <ion-select-option value="personal">Personal</ion-select-option>
+        <ion-select-option value="work">Work</ion-select-option>
+      </ion-select>
+      <ion-input type="text" [(ngModel)]="mobileArray[idx].mobile">
+      </ion-input>
+      <ion-icon style="z-index:999" name="add-circle-outline" (click)="addMobile(idx)"></ion-icon>&nbsp;&nbsp;
+      <ion-icon style="z-index:999" name="remove-circle-outline" (click)="deleteMobile(idx)"></ion-icon>&nbsp;&nbsp;
+    </ion-item>
+  </ion-item-group>
+
+  <div style="border: 3px solid rgb(231, 230, 230);"></div>
+
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-icon name="mail"></ion-icon>&nbsp;&nbsp;
+      <ion-label>Email Address</ion-label>
+    </ion-item-divider>
+    <ion-item *ngFor="let email of emailArray; let idx = index">
+      <ion-select placeholder="Select" [(ngModel)]="emailArray[idx].type">
+        <ion-select-option value="personal">Personal</ion-select-option>
+        <ion-select-option value="work">Work</ion-select-option>
+      </ion-select>
+      <ion-input type="email" [(ngModel)]="emailArray[idx].email">
+      </ion-input>
+      <ion-icon style="z-index:999" name="add-circle-outline" (click)="addEmail(idx)"></ion-icon>&nbsp;&nbsp;
+      <ion-icon style="z-index:999" name="remove-circle-outline" (click)="deleteEmail(idx)"></ion-icon>&nbsp;&nbsp;
+    </ion-item>
+  </ion-item-group>
+  <div style="border: 3px solid rgb(231, 230, 230);"></div>
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-icon name="calculator"></ion-icon>&nbsp;&nbsp;
+      <ion-label>Landline</ion-label>
+    </ion-item-divider>
+    <ion-item *ngFor="let landline of landlineArray; let idx = index">
+      <ion-select placeholder="Select" [(ngModel)]="landlineArray[idx].type">
+        <ion-select-option value="personal">Personal</ion-select-option>
+        <ion-select-option value="home">Work</ion-select-option>
+      </ion-select>
+      <ion-input type="number" [(ngModel)]="landlineArray[idx].landline"></ion-input>
+      <ion-icon style="z-index:999" name="add-circle-outline" (click)="addLandline(idx)"></ion-icon>&nbsp;&nbsp;
+      <ion-icon style="z-index:999" name="remove-circle-outline" (click)="deleteLandline(idx)"></ion-icon>&nbsp;&nbsp;
+    </ion-item>
+  </ion-item-group>
+  <div *ngIf="!showMore" style="border: 3px solid rgb(231, 230, 230);"></div>
+
+
+  <ion-item *ngIf="!showMore">
+    <ion-label (click)="showMore = !showMore">Show More Field</ion-label>
+  </ion-item>
+
+  <div style="border: 3px solid rgb(231, 230, 230);"></div>
+  <div *ngIf="showMore">
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-icon name="calculator"></ion-icon>&nbsp;&nbsp;
+        <ion-label>Company Related</ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-input placeholder="Reporting Manager" type="text" [(ngModel)]="formData['reportingManager']"> </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Reporting Subordinates" type="text" [(ngModel)]="formData['reportingSubordinates']">
+        </ion-input>
+      </ion-item>
+    </ion-item-group>
+    <div style="border: 3px solid rgb(231, 230, 230);"></div>
+    <ion-item-group>
+      <ion-item>
+        <ion-label>Birth Date</ion-label>
+        <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="formData['birthDay']">
+        </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Anniversary</ion-label>
+        <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="formData['anniversary']">
+        </ion-datetime>
+      </ion-item>
+    </ion-item-group>
+    <div style="border: 3px solid rgb(231, 230, 230);"></div>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-icon name="phone-portrait"></ion-icon>&nbsp;&nbsp;
+        <ion-label>Social</ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-input placeholder="Facebook" type="text" [(ngModel)]="formData['fbLink']"> </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Twitter" type="text" [(ngModel)]="formData['twitter']"> </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="LinkDin" type="text" [(ngModel)]="formData['linkdin']"> </ion-input>
+      </ion-item>
+    </ion-item-group>
+  </div>
+  <ion-item *ngIf="showMore">
+    <ion-label (click)="showMore = !showMore">Show Less Field</ion-label>
+  </ion-item>
+</ion-content>

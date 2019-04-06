@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons *ngIf="!toggled" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="!toggled">Select Company</ion-title>
+    <ion-searchbar *ngIf="toggled" [(ngModel)]="searchTerm" [showCancelButton]="true" (ionCancel)="toggleSearch()"
+      (ionInput)="triggerInput($event)"></ion-searchbar>
+    <ion-buttons slot="end" end *ngIf="!toggled">
+      <ion-icon name="search" (click)="toggleSearch()" style="zoom:1.5"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngIf="companyList">
+    <ion-item *ngFor="let company of items" (click)="onClick(company)">
+      <ion-icon name="business"></ion-icon>&nbsp;&nbsp;
+      <ion-label>{{ company.companyName }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
